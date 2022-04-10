@@ -20,24 +20,12 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/todos", (_, res) => {
   console.log("muna was here");
-  // res.writeHead(200, { "Content-Type": "application/json" });
-  // constres.send('im muna');
   const todos = require("./models/todos.json");
   console.log(todos);
   res.status(200).send(todos).end();
 });
 
-// });
 
-//Add GET request with path '/todos/overdue'
-
-// app.get('/todos/overdue', (req, res) => {
-//   console.log("im here again");
-// var currentTime = new Date();
-// if (foundTodo.due > currentTime) res.send(foundTodo);
-// res.status(200).send(foundTodo).end();
-
-// });
 
 app.get("/todos/overdue", (req, res) => {
   console.log("muna is doing overdue here");
@@ -66,16 +54,13 @@ app.get("/todos/completed", (req, res) => {
     console.log(todo.completed);
     return todo.completed === true;
   });
-  // if (todos.completed === true) res.send(newCompleted.push(foundCompleted.completed));
   res.status(200).send(foundCompleted).end();
 });
 
 // Get request with ID
 
 app.get("/todos/:id", (req, res) => {
-  // console.log("ilovepink", req.params.id);
   const foundTodo = todos.find((todo) => {
-    // console.log(todo);
     console.log(req.params.id, todo.id);
     return todo.id === req.params.id;
   });
@@ -87,7 +72,6 @@ app.get("/todos/:id", (req, res) => {
 //Add POST request with path '/todos'
 
 app.post("/todos", (req, res) => {
-  // console.log("hahaha", req.body,todos[0]);
   console.log(todos);
 
   const newTodo = req.body;
